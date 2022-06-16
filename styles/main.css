@@ -2,32 +2,51 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  color: white;
-}
-
-h1 {
+section h2 {
   font-family: "Quicksand", sans-serif;
-  font-weight: 400;
-  font-size: 9vh;
-  font-style: normal;
+  font-weight: 300;
   text-align: center;
-  color: white;
+  font-size: 8vh;
 }
 
-h2 {
+@media only screen and (max-width: 400px) {
+  section h2 {
+    font-size: 6vh;
+  }
+  section h5 {
+    font-size: medium;
+  }
+}
+
+section h3 {
   font-size: 5vh;
   font-weight: 300;
   text-align: center;
+  display: inline-block;
+  position: relative;
+  border-bottom: 1px solid #000000;
+  width: 200px;
+  padding-bottom: 5px;
 }
 
-h3,
-h4,
-h5 {
+h4 {
+  border-bottom: 1px solid lightslategray;
+}
+section h4,
+section h5 {
   font-family: "Quicksand", sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
   text-align: center;
+}
+
+.project h4 {
+  font-weight: 300;
+  font-family: "Quicksand", sans-serif;
+  font-style: normal;
+  text-align: center;
+  border-bottom: none;
+  padding-top: 10px;
 }
 
 img {
@@ -41,6 +60,38 @@ img {
   border-radius: 25px;
 }
 
+section {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: auto;
+  min-height: 100vh !important;
+  width: 100%;
+  scroll-snap-align: end;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(-45deg, #ca9787, #812649, #4ba1c1, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  color: white;
+  text-align: center;
+  overflow-y: auto;
+}
+
+section:nth-child(even) {
+  background: linear-gradient(-45deg, #b2a09a, #885b6c, #6a95a4, #568f81);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  padding: 0;
+  margin: 0;
+  scroll-snap-align: end;
+}
+
+.container-fluid {
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
 body {
   font-family: "Quicksand", sans-serif;
   color: rgba(0, 0, 0, 0.8);
@@ -48,13 +99,10 @@ body {
   font-style: normal;
   line-height: 1.58;
   letter-spacing: -0.003em;
-  font-size: 20px;
-  background: linear-gradient(-45deg, #ca9787, #812649, #4ba1c1, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
   height: 100vh;
   width: 100vw;
-  margin: 0;
+  margin: 0px;
+  padding: 0px;
 }
 
 @keyframes gradient {
@@ -67,6 +115,18 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 100% !important;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.container-fluid {
+  padding: 0px;
 }
 
 .wrapper {
@@ -82,19 +142,41 @@ body {
 
 section {
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+  min-width: 100%;
   scroll-snap-align: end;
-  border: thin solid lightblue;
+  padding: 4px 4px;
+  margin: 0px;
+  background: linear-gradient(-45deg, #ca9787, #812649, #4ba1c1, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
 }
 
+section:nth-child(even) {
+  background: linear-gradient(-45deg, #b2a09a, #885b6c, #6a95a4, #568f81);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  padding: 0;
+  margin: 0;
+  scroll-snap-align: end;
+}
+
+section:nth-last-of-type() {
+  height: 100%;
+  width: 100%;
+}
 .content {
-  place-content: center;
+  display: flex;
+  flex-direction: column;
   width: 100vw;
+  height: 80vh;
+  align-items: center;
   justify-content: center;
-  align-items: space-between;
-  padding: 12px;
-  margin: 12px;
+  padding: 8px;
+  margin-top: 12px;
+  margin: 4px;
 }
 
 .swipe {
@@ -108,8 +190,13 @@ section {
 ul {
   margin: 0 auto;
   text-align: center;
+  list-style-type: none;
+  padding: 1px;
 }
 
+li {
+  margin: 2px;
+}
 @-webkit-keyframes bounceLeft {
   0%,
   20%,
@@ -161,9 +248,7 @@ ul {
     transform: translateX(15px);
   }
 }
-/* /left bounce */
 
-/* right bounce */
 @-webkit-keyframes bounceRight {
   0%,
   20%,
@@ -252,8 +337,23 @@ ul {
   }
 }
 
-li,
-.connection {
+.box-font {
+  font-size: larger;
+}
+
+.swipe {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 10%;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+.connection,
+.box {
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: translateZ(0);
@@ -274,8 +374,9 @@ li,
   border: 2px solid lightslategray;
   border-radius: 2px;
 }
-li:before,
-.connection:before {
+
+.connection:before,
+.box::before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -295,22 +396,77 @@ li:before,
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-li:hover,
-li:focus,
-li:active,
 .connection:hover,
 .connection:focus,
-.connection:active {
+.connection:active,
+.box:hover,
+.box:focus,
+.box:active {
   color: black;
   background-size: 100% 2px; /*width:100% height:2px*/
   transform: scale(1.1);
 }
-li:hover:before,
-li:focus:before,
-li:active:before,
 .connection:hover:before,
 .connection:focus:before,
-.connection:active:before {
+.connection:active:before,
+.box:hover:before,
+.box:focus:before,
+.box:active:before {
   -webkit-transform: scaleY(1);
   transform: scaleY(1);
+}
+
+.arrow-down {
+  animation: bounce-down 2s infinite ease;
+}
+
+.bouncy-director {
+  opacity: 0.7;
+  margin: 12px;
+}
+
+@keyframes bounce-down {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.skills {
+  height: 316px;
+  width: 25rem;
+}
+
+.project {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid lightslategray;
+  border-radius: 30px;
+  justify-content: "center";
+  align-items: "center";
+  margin-left: 12px;
+  margin-right: 12px;
+  padding-bottom: 12px;
 }
