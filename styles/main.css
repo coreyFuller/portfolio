@@ -66,7 +66,7 @@ section {
   position: relative;
   height: auto;
   min-height: 100vh !important;
-  width: 100%;
+  /* width: 100%; */
   scroll-snap-align: end;
   padding: 0;
   margin: 0;
@@ -152,6 +152,7 @@ section {
   background: linear-gradient(-45deg, #ca9787, #812649, #4ba1c1, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
+  scroll-snap-align: end;
 }
 
 section:nth-child(even) {
